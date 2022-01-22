@@ -134,7 +134,7 @@ box.pinned { // drop-target
     &:hover {
       @if $variant == mixed { @include button(flat-hover, $tc: $inv_fg); }
       @else { @include button(flat-hover, $tc: $fg); }
-      @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+      @if $maj_ver == 3 { -gtk-icon-filter: brightness(1.2); }
       @else { -gtk-icon-filter: brightness(1.2); }
 
       > image { opacity: 1.0; }
@@ -159,7 +159,7 @@ box.pinned { // drop-target
       @if $variant == mixed { @include button(flat-hover, $tc: $inv_fg); }
       @else { @include button(flat-hover, $tc: $fg); }
       &:hover {
-        @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+        @if $maj_ver == 3 { -gtk-icon-filter: brightness(1.2); }
         @else { -gtk-icon-filter: brightness(1.2); }
       }
 
@@ -171,7 +171,7 @@ box.pinned { // drop-target
   .unpinned button.flat.launcher,
   .pinned button.flat.launcher.running {
     &:hover {
-      @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+      @if $maj_ver == 3 { -gtk-icon-filter: brightness(1.2); }
       @else { -gtk-icon-filter: brightness(1.2); }
     }
 
@@ -1112,7 +1112,7 @@ widget > box.workspace-switcher {
 
         &:hover,
         &:active {
-          @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+          @if $maj_ver == 3 { -gtk-icon-filter: brightness(1.2); }
           @else { -gtk-icon-filter: brightness(1.2); }
 
           > image { opacity: $a_fg_2nd; }
@@ -1131,7 +1131,7 @@ widget > box.workspace-switcher {
 
           &:hover,
           &:active {
-            @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+            @if $maj_ver == 3 { -gtk-icon-filter: brightness(1.2); }
             @else { -gtk-icon-filter: brightness(1.2); }
           }
         }
@@ -1337,7 +1337,7 @@ window.budgie-switcher-window {
     &:selected { // use the same values with Gnome-Shell
       background-color: track($acc_bg, $a_trk_2);
       color: if($variant == mixed, $inv_acc_fg, $acc_fg);
-      @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+      @if $maj_ver == 3 { -gtk-icon-filter: brightness(1.2); }
       @else { -gtk-icon-filter: brightness(1.2); }
       &:disabled {
         @if $variant == mixed {
@@ -1346,7 +1346,7 @@ window.budgie-switcher-window {
         @else {
           background-color: track($fg, $a_trk_1);
         }
-        @if $maj_ver == 3 { -gtk-icon-effect: dim; }
+        @if $maj_ver == 3 { -gtk-icon-filter: opacity(0.5); }
         @else { -gtk-icon-filter: opacity(0.5); }
 
         &, label { color: if($variant == mixed, $dis_inv_fg, $dis_fg); }

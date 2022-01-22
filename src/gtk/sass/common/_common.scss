@@ -7,7 +7,7 @@
   background-clip: padding-box;
 
   outline-color: $trk_out_fg;
-  -gtk-outline-radius: $r_2;
+  border-radius: $r_2;
 
   -gtk-secondary-caret-color: $sel_bg;
 
@@ -82,7 +82,7 @@
 
 *:disabled {
   @if $maj_ver == 4 { -gtk-icon-filter: opacity($a_fg_3rd); }
-  @else { -gtk-icon-effect: dim; }
+  @else { -gtk-icon-filter: opacity(0.5); }
 }
 
 // for backdrop, tone down element surfaces with transparentize

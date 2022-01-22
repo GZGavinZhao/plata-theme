@@ -552,7 +552,7 @@ $gf_margin: 12px;
   &:hover,
   &:selected {
     image {
-      @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+      @if $maj_ver == 3 { -gtk-icon-filter: brightness(1.2); }
       @else { -gtk-icon-filter: brightness(1.2); }
     }
   }
@@ -759,7 +759,7 @@ $gf_margin: 12px;
         // tone up image node
         &-background image,
         &-item-background image {
-          @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+          @if $maj_ver == 3 { -gtk-icon-filter: brightness(1.2); }
           @else { -gtk-icon-filter: brightness(1.2); }
         }
       }
