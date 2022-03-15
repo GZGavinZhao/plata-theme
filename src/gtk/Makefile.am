@@ -559,7 +559,12 @@ xfcenotifylumine_file = \
 xfcenotifynoir_file = \
 	$(xfcenotifynoirdir)/gtk.css
 
-sassc_option = -M -t compact
+if ENABLE_DART_SASS
+	sassc_option = --style=compressed --no-source-map
+else
+	sassc_option = -M -t compact
+endif
+
 parallel_option = --null --no-notice --line-buffer --jobs 100%
 
 # *******************************************

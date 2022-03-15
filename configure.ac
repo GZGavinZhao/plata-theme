@@ -35,6 +35,7 @@ PLATA_OPTION([PLANK],       [plank],       [Plank],               [disable])
 PLATA_OPTION([TELEGRAM],    [telegram],    [Telegram],            [disable])
 PLATA_OPTION([TWEETDECK],   [tweetdeck],   [Tweetdeck-Colordeck], [disable])
 PLATA_OPTION([AIRFORSTEAM], [airforsteam], [Air-for-Steam],       [disable])
+PLATA_OPTION([DART_SASS],   [dart_sass],   [Dart-Sass],           [disable])
 
 PKG_PROG_PKG_CONFIG
 AS_IF([test -z "$PKG_CONFIG"], [AC_MSG_ERROR(['pkg-config' not found.])])
@@ -57,9 +58,16 @@ if test x"$INKSCAPE" = x; then
 	AC_MSG_ERROR(['inkscape' not found.])
 fi
 
-AC_PATH_TOOL([SASSC], [sassc])
-if test x"$SASSC" = x; then
-	AC_MSG_ERROR(['sassc' not found.])
+if test x"$ENABLE_DART_SASS" = xyes; then
+        AC_PATH_TOOL([SASSC], [dart-sass])
+        if test x"$SASSC" = x; then
+	        AC_MSG_ERROR(['dart-sass' not found.])
+        fi
+else
+        AC_PATH_TOOL([SASSC], [sassc])
+        if test x"$SASSC" = x; then
+	        AC_MSG_ERROR(['sassc' not found.])
+        fi
 fi
 
 if test x"$ENABLE_PARALLEL" = xyes; then

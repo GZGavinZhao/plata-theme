@@ -958,7 +958,11 @@ cinnamon_noir_asset_switch_file = \
 cinnamon_noir_asset_thumb_file = \
 	$(cinnamonnoirdir)/assets/thumbnail.png
 
-sassc_option = -M -t compact
+if ENABLE_DART_SASS
+	sassc_option = --style=compressed --no-source-map
+else
+	sassc_option = -M -t compact
+endif
 
 # ****************************
 # * Generate CSS stylesheets *
