@@ -35,7 +35,7 @@ PLATA_OPTION([PLANK],       [plank],       [Plank],               [disable])
 PLATA_OPTION([TELEGRAM],    [telegram],    [Telegram],            [disable])
 PLATA_OPTION([TWEETDECK],   [tweetdeck],   [Tweetdeck-Colordeck], [disable])
 PLATA_OPTION([AIRFORSTEAM], [airforsteam], [Air-for-Steam],       [disable])
-PLATA_OPTION([DART_SASS],   [dart_sass],   [Dart-Sass],           [disable])
+PLATA_OPTION([DART_SASS],   [dart_sass],   [Dart-Sass],           [enable])
 
 PKG_PROG_PKG_CONFIG
 AS_IF([test -z "$PKG_CONFIG"], [AC_MSG_ERROR(['pkg-config' not found.])])
@@ -126,6 +126,7 @@ AC_MSG_RESULT([
          xmllint:                $XMLLINT
          inkscape:               $INKSCAPE
          sassc:                  $SASSC
+         use Dart Sass:          $ENABLE_DART_SASS (default: yes)
 
          parallel-build:         $ENABLE_PARALLEL (default: no)
          parallel:               $PARALLEL
