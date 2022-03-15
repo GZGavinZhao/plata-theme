@@ -7,7 +7,12 @@
   background-clip: padding-box;
 
   outline-color: $trk_out_fg;
-  -gtk-outline-radius: $r_2;
+  @if $maj_ver == 3 {
+    -gtk-outline-radius: $r_2;
+  }
+  @else {
+    border-radius: $r_2;
+  }
 
   -gtk-secondary-caret-color: $sel_bg;
 
