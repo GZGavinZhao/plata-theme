@@ -17,8 +17,8 @@ $a_trk_out: 0.20;
 
 // divider colors
 $a_div_0: 0.30;
-$a_div_1: $a_div_0 * 0.5;
-$a_div_2: $a_div_1 * 0.5;
+$a_div_1: $a_div_0 / 2;
+$a_div_2: $a_div_1 / 2;
 
 // osd colors
 $a_osd: 0.93;
@@ -101,7 +101,7 @@ $attention: 6px 6px;
 $separator_narrow: 1px 1px;
 $separator_wide: 1px 1px, 1px 1px;
 $titlebutton_small: if($ref_weight < 1.0, 24px, 30px);
-$toolitem_size: $widget_size * 3 * 0.25;
+$toolitem_size: $widget_size * 3 / 4;
 $min_combo: $icon_size * 1.5;
 $tab_indicator_size: 2px;
 $switch_width: 50px;
@@ -123,7 +123,7 @@ $dev_asset_size: 28px;
 
 $entry_lr_space: 8px;
 $txt_button_lr_space: $ref_size;
-$baseline: $ref_size * 0.1;
+$baseline: $ref_size / 10;
 // experimental value
 $combo_button_padding_0:
   calc((#{rem($widget_size)} - #{$min_combo}) / 2);
@@ -132,7 +132,7 @@ $combo_button_padding_2:
 $combo_button_padding_6:
   calc((#{rem($widget_size)} - #{$min_combo} + 6px) / 2);
 $toolbar_padding: rem(5.3px);
-$pathbar_min_size: $entry_lr_space * 0.5;
+$pathbar_min_size: $entry_lr_space / 2;
 $menuitem_padding: 6px;
 $popover_padding: 6px;
 $menuitem_height: calc(#{rem($menuitem_padding * 2)} + #{$icon_size});

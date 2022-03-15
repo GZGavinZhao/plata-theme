@@ -187,7 +187,7 @@ wnck-pager {
 na-tray-applet { -NaTrayApplet-icon-padding: 2px; }
 
 gp-arrow-button {
-  min-width: rem($widget_size * 0.5);
+  min-width: rem($widget_size / 2);
   min-height: 0;
   margin: 0 rem($menu_padding);
   border: 1px solid transparent;
@@ -707,7 +707,7 @@ $gf_margin: 12px;
 
   $child_gap: if($ref_weight < 1.0, 4px, 6px);
   $container_padding: $child_gap ($child_gap * 1.5);
-  $label_margin: ($child_gap * 0.5) (-$child_gap * 1.5) 0;
+  $label_margin: ($child_gap / 2) (-$child_gap * 1.5) 0;
   $label_padding: if($ref_weight < 1.0,
                   ($child_gap - 1px) $child_gap $child_gap,
                   ($child_gap - 3px) $child_gap ($child_gap - 2px));
@@ -1273,7 +1273,7 @@ window.solid-csd > box.vertical > box.vertical {
 window.background > box.vertical > box.vertical > toolbar.horizontal {
   // prev/play/next buttons in alternate-mode bottom toolbar
   toolitem .linked.horizontal > button:not(.image-button):not(.text-button) {
-    padding: 0 rem($toolitem_size * 0.25, $sw: 1.0); // revive L/R padding
+    padding: 0 rem($toolitem_size / 4, $sw: 1.0); // revive L/R padding
   }
 }
 
@@ -1282,7 +1282,7 @@ window.background > box.vertical > box.vertical > toolbar.horizontal {
 $album_art: 54px;
 $album_art_small: 36px;
 $min_button: 24px - (1px * 2);
-$toolitem_margin: ($album_art - $min_button) * 0.5;
+$toolitem_margin: ($album_art - $min_button) / 2;
 
 window.background > box.vertical > toolbar.primary-toolbar {
   toolitem {
@@ -1611,7 +1611,7 @@ eggsearchbar box.search-bar { background-color: $dark_bg; }
   &:not(:hover):not(:active) > entry {
     @if $variant == mixed {
       background-image:
-        image(mix($inv_fg, $inv_base, percentage($a_trk_1 * 0.5)));
+        image(mix($inv_fg, $inv_base, percentage($a_trk_1 / 2)));
       color: $inv_sec_fg;
       caret-color: $inv_sec_fg;
 
@@ -1628,7 +1628,7 @@ eggsearchbar box.search-bar { background-color: $dark_bg; }
   &:hover > entry {
     @if $variant == mixed {
       background-image:
-        image(mix($inv_fg, $inv_base, percentage($a_trk_1 * 0.5)));
+        image(mix($inv_fg, $inv_base, percentage($a_trk_1 / 2)));
       color: $inv_fg;
       caret-color: $inv_fg;
 
@@ -1880,7 +1880,7 @@ headerbar button.dzlmenubutton.popup.toggle {
     &:not(.titlebutton):not(.selection-menu):not(.text-button):not(.lock) {
       &:not(.color):not(.image-button) {
         @include radius($r_2, none);
-        padding: 0 rem($txt_button_lr_space * 0.5);
+        padding: 0 rem($txt_button_lr_space / 2);
       }
     }
   }
@@ -1916,9 +1916,9 @@ popover.transfers {
 
 window.workbench > stack.titlebar > stack > headerbar > box.horizontal {
   > button.dzlmenubutton.popup.toggle {
-    padding: 0 rem($txt_button_lr_space * 0.5);
+    padding: 0 rem($txt_button_lr_space / 2);
 
-    image { padding: 0 rem($txt_button_lr_space * 0.5); }
+    image { padding: 0 rem($txt_button_lr_space / 2); }
   }
 
   > box.horizontal > button.popup.toggle { // radial-progress widget
@@ -2147,7 +2147,7 @@ window.background > box.vertical box.horizontal {
         background-image: image($bg);
         color: $fg;
         &:hover {
-          background-image: image(mix($fg, $bg, percentage($a_trk_1 * 0.5)));
+          background-image: image(mix($fg, $bg, percentage($a_trk_1 / 2)));
           color: $fg;
         }
         &:active {
@@ -2175,7 +2175,7 @@ window.background > box.vertical box.horizontal {
           }
           &:hover {
             background-image: image(mix($sel_label,
-                                        $base, percentage($a_trk_1 * 0.5)));
+                                        $base, percentage($a_trk_1 / 2)));
           }
           &:active {
             &, &:focus {
@@ -2353,7 +2353,7 @@ frame#weather-page-content-view {
   button.osd {
     min-width: rem($widget_size);
     min-height: rem($widget_size);
-    padding: rem($txt_button_lr_space * 0.5);
+    padding: rem($txt_button_lr_space / 2);
     @include radius($r);
   }
 
@@ -2433,7 +2433,7 @@ window.org-gnome-Todo headerbar > box.horizontal {
         &:not(.text-button):not(.lock):not(.color):not(.image-button) {
           @include radius($r_2, none);
 
-          > label { padding: 0 rem($txt_button_lr_space * 0.5); }
+          > label { padding: 0 rem($txt_button_lr_space / 2); }
         }
       }
     }
@@ -2965,10 +2965,10 @@ button.round-button { // categories expander button
   &:not(.flat):not(.text-button):not(.image-button) {
     &:dir(ltr), &:dir(rtl) { // specificity bump
       @include radius($r_2, none);
-      padding: 0 rem($txt_button_lr_space * 0.5);
+      padding: 0 rem($txt_button_lr_space / 2);
 
       label,
-      image { padding: 0 rem($txt_button_lr_space * 0.5); }
+      image { padding: 0 rem($txt_button_lr_space / 2); }
     }
   }
 }
@@ -3399,7 +3399,7 @@ window.background > box.vertical > box.horizontal + paned.horizontal > widget {
     // without meaningless padding... 
     min-width: $icon_size * 1.5;
     min-height: $icon_size * 1.5;
-    padding: if($ref_weight < 1.0, $icon_size * 0.25, $icon_size * 0.5);
+    padding: if($ref_weight < 1.0, $icon_size / 4, $icon_size / 2);
   }
 }
 
@@ -3411,7 +3411,7 @@ infobar > revealer > box.horizontal > box + buttonbox {
       &.text-button,
       &.toggle {
         min-width: 0; // FIXME: force loading 16px arrow images
-        padding: 0 rem($txt_button_lr_space * 0.5);
+        padding: 0 rem($txt_button_lr_space / 2);
       }
     }
   }

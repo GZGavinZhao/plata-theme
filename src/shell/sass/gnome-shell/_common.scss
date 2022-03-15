@@ -6,8 +6,6 @@
 //  * Globals *
 //  ***********/
 
-@use "sass:math";
-
 * {
   transition-property: border-color,
                        border-image,
@@ -194,7 +192,7 @@ StScrollBar {
   -slider-active-background-color: $acc_bg; // active trough fill
   -slider-active-border-color: transparent; // active trough border
   -slider-handle-border-width: 0;
-  -slider-handle-radius: $icon_size * 0.5;
+  -slider-handle-radius: $icon_size / 2;
   @if $ver > 3.25 {
     // barlevels are for >= 3.29.90
     -barlevel-height: 2px;
@@ -989,8 +987,8 @@ $avatar_width: $icon_size * 1.5;
 
   .popup-menu-item {
     @if $ver < 3.35 {
-      spacing: if($ref_weight >= 1.0, $avatar_width * 0.5 - $extra_spacing,
-                                      $avatar_width * 0.5);
+      spacing: if($ref_weight >= 1.0, $avatar_width / 2 - $extra_spacing,
+                                      $avatar_width / 2);
     }
     @else { spacing: if($ref_weight >= 1.0, 8px, 6px); }
     color: $sec_fg;
@@ -1259,22 +1257,22 @@ $avatar_width: $icon_size * 1.5;
     &.user-icon {
       icon-size: $icon_size + 4px;
       padding: 0 if($ref_weight >= 1.0,
-                    ($avatar_width - ($icon_size + 4px) + $extra_spacing) * 0.5,
-                    ($avatar_width - ($icon_size + 4px)) * 0.5);
+                    ($avatar_width - ($icon_size + 4px) + $extra_spacing) / 2,
+                    ($avatar_width - ($icon_size + 4px)) / 2);
     }
 
     &.default-icon {
       icon-size: $icon_size;
       padding: 0 if($ref_weight >= 1.0,
-                    ($avatar_width - $icon_size + $extra_spacing) * 0.5,
-                    ($avatar_width - $icon_size) * 0.5);
+                    ($avatar_width - $icon_size + $extra_spacing) / 2,
+                    ($avatar_width - $icon_size) / 2);
     }
   }
   @elif $ver < 3.33 {
     icon-size: $icon_size;
     padding: 0 if($ref_weight >= 1.0,
-                  ($avatar_width - $icon_size + $extra_spacing) * 0.5,
-                  ($avatar_width - $icon_size) * 0.5);
+                  ($avatar_width - $icon_size + $extra_spacing) / 2,
+                  ($avatar_width - $icon_size) / 2);
   }
 }
 
@@ -2309,7 +2307,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
       &-list {
         spacing: 1px; // for internal separators
-        margin-top: if($ref_weight >= 1.0, 0.6em * 0.5, 0.45em * 0.5);
+        margin-top: if($ref_weight >= 1.0, 0.6em / 2, 0.45em / 2);
         margin-bottom: if($ref_weight >= 1.0, 0.6em * 1.5, 0.45em * 1.5);
         padding: 0;
         border: 1px solid if($variant == dark, $hidden_fill_bg,
@@ -2734,7 +2732,7 @@ $ripple_d: 52px;
   .ripple-pointer-location {
     width: $ripple_d;
     height: $ripple_d;
-    border-radius: $ripple_d * 0.5;
+    border-radius: $ripple_d / 2;
     @extend %ripple_bg;
   }
 }
@@ -2961,7 +2959,7 @@ $close_button_size: if($ver < 3.35, 32px,
     @if $ver < 3.37 {
       -horizontal-spacing: if($ref_weight >= 1.0, 16px, 12px);
       -vertical-spacing: if($ref_weight >= 1.0, 16px, 12px);
-      spacing: if($ref_weight >= 1.0, 16px * 0.5, 12px * 0.5);
+      spacing: if($ref_weight >= 1.0, 16px / 2, 12px / 2);
     }
     padding: if($ref_weight >= 1.0, 16px, 12px);
   }
@@ -3077,16 +3075,16 @@ $provider_icon_size: 32px; // for < 3.25
     @if $ver > 3.33 { max-width: 1000px; }
 
     @if $ver > 3.25 {
-      spacing: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                      math.div($results_icon_size, 6));
-      padding: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                      math.div($results_icon_size, 6));
+      spacing: if($ref_weight >= 1.0, $results_icon_size / 3,
+                                      $results_icon_size / 6);
+      padding: if($ref_weight >= 1.0, $results_icon_size / 3,
+                                      $results_icon_size / 6);
     }
     @else {
-      spacing: if($ref_weight >= 1.0, $provider_icon_size * 0.5,
-                                      $provider_icon_size * 0.25);
-      padding: if($ref_weight >= 1.0, $provider_icon_size * 0.5,
-                                      $provider_icon_size * 0.25);
+      spacing: if($ref_weight >= 1.0, $provider_icon_size / 2,
+                                      $provider_icon_size / 4);
+      padding: if($ref_weight >= 1.0, $provider_icon_size / 2,
+                                      $provider_icon_size / 4);
     }
   }
 }
@@ -3094,21 +3092,21 @@ $provider_icon_size: 32px; // for < 3.25
  // This should be equal to #searchResultsContent spacing
 .search-section {
   @if $ver > 3.25 {
-    spacing: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                    math.div($results_icon_size, 6));
+    spacing: if($ref_weight >= 1.0, $results_icon_size / 3,
+                                    $results_icon_size / 6);
 
     // This is the space between the provider icon and the results container
     &-content {
-      spacing: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                      math.div($results_icon_size, 6));
+      spacing: if($ref_weight >= 1.0, $results_icon_size / 3,
+                                      $results_icon_size / 6);
     }
   }
   @else {
-    spacing: if($ref_weight >= 1.0, $provider_icon_size * 0.5,
-                                    $provider_icon_size * 0.25);
+    spacing: if($ref_weight >= 1.0, $provider_icon_size / 2,
+                                    $provider_icon_size / 4);
     &-content {
-      spacing: if($ref_weight >= 1.0, $provider_icon_size * 0.5,
-                                      $provider_icon_size * 0.25);
+      spacing: if($ref_weight >= 1.0, $provider_icon_size / 2,
+                                      $provider_icon_size / 4);
     }
 
     // hide unneeded last separator
@@ -3180,8 +3178,8 @@ $provider_icon_size: 32px; // for < 3.25
 
   &-result {
     @if $ver < 3.25 {
-      &:ltr { margin-right: $provider_icon_size * 0.5; }
-      &:rtl { margin-left: $provider_icon_size * 0.5; }
+      &:ltr { margin-right: $provider_icon_size / 2; }
+      &:rtl { margin-left: $provider_icon_size / 2; }
     }
     padding: 0;
     border-radius: $r_2;
@@ -3245,17 +3243,17 @@ $provider_icon_size: 32px; // for < 3.25
       @if $ver > 3.25 {
         // concern the rows without 48px icons
         min-height: $results_icon_size * (1.5 + 0.5);
-        spacing: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                        math.div($results_icon_size, 6));
-        padding: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                        math.div($results_icon_size, 6));
+        spacing: if($ref_weight >= 1.0, $results_icon_size / 3,
+                                        $results_icon_size / 6);
+        padding: if($ref_weight >= 1.0, $results_icon_size / 3,
+                                        $results_icon_size / 6);
       }
       @else {
         min-height: $provider_icon_size * (1.5 + 0.5);
-        spacing: if($ref_weight >= 1.0, $provider_icon_size * 0.5,
-                                        $provider_icon_size * 0.25);
-        padding: if($ref_weight >= 1.0, $provider_icon_size * 0.5,
-                                        $provider_icon_size * 0.25);
+        spacing: if($ref_weight >= 1.0, $provider_icon_size / 2,
+                                        $provider_icon_size / 4);
+        padding: if($ref_weight >= 1.0, $provider_icon_size / 2,
+                                        $provider_icon_size / 4);
       }
     }
 
@@ -3270,12 +3268,12 @@ $provider_icon_size: 32px; // for < 3.25
         StLabel {
           // add spacing to start-position only
           &:ltr {
-            padding-left: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                                 math.div($results_icon_size, 6));
+            padding-left: if($ref_weight >= 1.0, $results_icon_size  / 3,
+                                                 $results_icon_size  / 6);
           }
           &:rtl {
-            padding-right: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                                  math.div($results_icon_size, 6));
+            padding-right: if($ref_weight >= 1.0, $results_icon_size / 3,
+                                                  $results_icon_size / 6);
           }
         }
       }
@@ -3296,28 +3294,28 @@ $provider_icon_size: 32px; // for < 3.25
   @if $ver > 3.25 {
     &-provider {
       &-content {
-        spacing: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                        math.div($results_icon_size, 6));
-        padding: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                        math.div($results_icon_size, 6));
+        spacing: if($ref_weight >= 1.0, $results_icon_size / 3,
+                                        $results_icon_size / 6);
+        padding: if($ref_weight >= 1.0, $results_icon_size / 3,
+                                        $results_icon_size / 6);
       }
 
       &-details { // labels at the right-side of -icon
         width: $provider_details_width;
         @if $ver > 3.35 {
-          margin-top: if($ref_weight >= 1.0, math.div($results_icon_size, 3) * 2,
-                                             math.div($results_icon_size, 6) * 2);
+          margin-top: if($ref_weight >= 1.0, $results_icon_size / 3 * 2,
+                                             $results_icon_size / 6 * 2);
         }
         font-size: 90%;
         @if $ver > 3.25 {
           color: $osd_ter_fg;
           &:ltr {
-            margin-left: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                                math.div($results_icon_size, 6));
+            margin-left: if($ref_weight >= 1.0, $results_icon_size  / 3,
+                                                $results_icon_size  / 6);
           }
           &:rtl {
-            margin-right: if($ref_weight >= 1.0, math.div($results_icon_size, 3),
-                                                 math.div($results_icon_size, 6));
+            margin-right: if($ref_weight >= 1.0, $results_icon_size / 3,
+                                                 $results_icon_size / 6);
           }
         }
         @else { color: $ovv_sec_fg; }
@@ -3344,15 +3342,15 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
   @if $ver > 3.25 {
     min-height: if($ref_weight >= 1.0, $results_icon_size * 2.75,
                                        $results_icon_size * 2.42);
-    padding: if($ref_weight >= 1.0, 0 $results_icon_size * 0.25,
-                                    0 $results_icon_size * 0.125);
+    padding: if($ref_weight >= 1.0, 0 $results_icon_size / 4,
+                                    0 $results_icon_size / 8);
     color: $osd_ter_fg;
     &:ltr { border-radius: $r_2 $r $r $r_2; }
     &:rtl { border-radius: $r $r_2 $r_2 $r; }
   }
   @else {
-    margin: if($ref_weight >= 1.0, $provider_icon_size * 0.25 0, 0);
-    padding: $provider_icon_size * 0.5;
+    margin: if($ref_weight >= 1.0, $provider_icon_size / 4 0, 0);
+    padding: $provider_icon_size / 2;
     border-radius: $r;
     color: $ovv_sec_fg;
   }
@@ -3378,8 +3376,8 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
 
   @if $ver < 3.25 {
     &-more {
-      width: $provider_icon_size * 0.5;
-      height: $provider_icon_size * 0.5;
+      width: $provider_icon_size / 2;
+      height: $provider_icon_size / 2;
       @include image-loader($url: 'assets/more-results.svg');
       -st-background-image-shadow: $z-depth-2;
     }
@@ -3599,8 +3597,8 @@ $grid_size: 136px;
   background-color: $sel_bg;
 
   .dash-item-container & {
-    width: $icon_size * 0.5;
-    height:  $icon_size * 0.5;
+    width: $icon_size / 2;
+    height:  $icon_size / 2;
     margin-bottom: 2px;
     border-radius: $r;
   }
@@ -3773,14 +3771,14 @@ $grid_size: 136px;
 
     @if $ver > 3.37 {
       .icon-grid {
-        row-spacing: math.div($icon_grid_spacing, 3);
-        column-spacing: $icon_grid_spacing * 0.5;
+        row-spacing: $icon_grid_spacing / 3;
+        column-spacing: $icon_grid_spacing / 2;
       }
 
       .page-indicators {
         margin-bottom: $icon_size;
 
-        .page-indicator { padding: 0 ($icon_size * 0.5) $icon_size; }
+        .page-indicator { padding: 0 ($icon_size / 2) $icon_size; }
       }
     }
   }
@@ -3845,7 +3843,7 @@ $grid_size: 136px;
       background-image: none;
       background-color: mix($sel_bg, $sel_fg, percentage($a_fg_2nd));
       @if $ver < 3.31 {
-        box-shadow: 0 0 0 ($icon_size * 0.5)
+        box-shadow: 0 0 0 ($icon_size / 2)
                     opacity(mix($sel_bg, $sel_fg, percentage($a_fg_2nd)),
                             $a_trk_out);
       }
@@ -4157,7 +4155,7 @@ $grid_size: 136px;
 
   @if $ver > 3.31 {
     .page-indicator { // in the .emoji-panel
-      padding: 0 ($icon_size * 0.5) $icon_size;
+      padding: 0 ($icon_size / 2) $icon_size;
 
       // set variant-specific colors
       .page-indicator-icon { box-shadow: inset 0 0 0 2px $osd_ter_fg; }
@@ -5276,7 +5274,7 @@ $tool_icon_size: 24px;
   @if $ver > 3.35 { background-color: transparent; }
 
   &-name {
-    padding-bottom: (6px * 0.5) 0;
+    padding-bottom: (6px / 2) 0;
     color: $osd_fg;
     font-weight: 700;
     font-size: 130%;
@@ -5299,8 +5297,8 @@ $tool_icon_size: 24px;
 }
 
 StBoxLayout#Windows {
-  &:ltr { padding: (8px + 4px + 6px * 0.5) 0 (8px + 4px) (8px + 4px + 6px); }
-  &:rtl { padding: (8px + 4px + 6px * 0.5) (8px + 4px + 6px) (8px + 4px) 0; }
+  &:ltr { padding: (8px + 4px + 6px / 2) 0 (8px + 4px) (8px + 4px + 6px); }
+  &:rtl { padding: (8px + 4px + 6px / 2) (8px + 4px + 6px) (8px + 4px) 0; }
 }
 
 #LookingGlassPropertyInspector {

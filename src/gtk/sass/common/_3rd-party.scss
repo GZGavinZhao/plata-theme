@@ -3,8 +3,6 @@
 //  ******************/
 
 // main container
-@use "sass:math";
-
 .budgie-container { background-color: transparent; }
 
 .budgie-panel {
@@ -445,8 +443,8 @@ button.flat.budgie-menu-launcher {
   @extend %budgie_trigger_button;
 
   box.horizontal > label {
-    &:dir(ltr) { margin-left: -$icon_size * 0.25; }
-    &:dir(rtl) { margin-right: -$icon_size * 0.25; }
+    &:dir(ltr) { margin-left: -$icon_size / 4; }
+    &:dir(rtl) { margin-right: -$icon_size / 4; }
   }
 }
 
@@ -597,8 +595,8 @@ button.flat.budgie-menu-launcher {
 
       label,
       image:first-child {
-        &:dir(ltr) { margin-left: -$icon_size * 0.25; } // align childs
-        &:dir(rtl) { margin-right: -$icon_size * 0.25; }
+        &:dir(ltr) { margin-left: -$icon_size / 4; } // align childs
+        &:dir(rtl) { margin-right: -$icon_size / 4; }
       }
 
       image {
@@ -620,7 +618,7 @@ button.flat.budgie-menu-launcher {
 
 // raven styling
 $raven_box_spacing: 4px;
-$switcher_width: (250px + $raven_box_spacing * 2) * 0.5;
+$switcher_width: (250px + $raven_box_spacing * 2) / 2;
 $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
 %raven_switcher_radio_button {
@@ -749,7 +747,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
     box-shadow: none;
 
     button.flat.image-button {
-      min-width: math.div(rem($switcher_width, $sw: 1.0) * 2, 3);
+      min-width: rem($switcher_width, $sw: 1.0) * 2  / 3;
       min-height: rem($switcher_height + 1px, $sw: 1.0);
       margin: -($raven_box_spacing + 1px); // vertically gapless placement
       padding: 0;
@@ -861,7 +859,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
     }
 
     > box.vertical > box.horizontal > image { // header icons
-      padding: rem(5.3px * 0.5) 0;
+      padding: rem(5.3px / 2) 0;
       color: $ter_fg; // tone down
       &:dir(ltr) { margin: 0 (4px + 1px) 0 -4px; }
       &:dir(rtl) { margin: 0 -4px 0 (4px + 1px); }
@@ -1186,7 +1184,8 @@ window.budgie-popover.workspace-popover {
     }
 
     image {
-      padding: math.div($requested_width - $icon_size * ($max_children_per_line + 1), $max_children_per_line * 2)
+      padding: ($requested_width - $icon_size * ($max_children_per_line + 1))
+               / ($max_children_per_line * 2)
                0;
     }
   }
@@ -1311,7 +1310,7 @@ window.budgie-switcher-window {
   // draw actual backgrounds and shadows
   .drop-shadow {
     margin: $shadow_margin_4; // reserve area for shadows
-    padding: $budgie_osd_margin $budgie_osd_margin ($budgie_osd_margin * 0.25);
+    padding: $budgie_osd_margin $budgie_osd_margin ($budgie_osd_margin / 4);
     border-radius: $r_8;
     @if $variant == mixed { background-color: track($inv_dark_bg, $a_osd); }
     @else { background-color: track($dark_bg, $a_osd); }
@@ -1941,7 +1940,7 @@ window.background.lightdm {
   menubar {  // broken
     @extend %greeter_panel_menubar;
     padding-top: ($greeter_panel_height - $greeter_panel_shadow - $icon_size)
-                 * 0.5;
+                 / 2;
     font-weight: 700;
     text-shadow: none;
 
@@ -2247,7 +2246,7 @@ window.background:not(.csd) > box.vertical {
           &:checked { background-color: track($fg, $a_trk_2); }
           &:disabled {
             background-color:
-              mix($fg, $base, percentage(math.div($a_trk_1 * 2, 3) * $a_fg_dis));
+              mix($fg, $base, percentage(($a_trk_1 * 2 / 3) * $a_fg_dis));
           }
         }
       }
@@ -2615,14 +2614,14 @@ $tabwin_padding: if($ref_weight < 1.0, 8px, 12px);
     }
 
     box.vertical {
-      > label { padding-top: $tabwin_padding * 0.5; }
+      > label { padding-top: $tabwin_padding / 2; }
 
-      > image { padding: ($tabwin_padding * 0.5) 0; }
+      > image { padding: ($tabwin_padding / 2) 0; }
     }
 
     box.horizontal > label {
-      &:dir(ltr) { padding-left: $tabwin_padding * 0.5; }
-      &:dir(rtl) { padding-right: $tabwin_padding * 0.5; }
+      &:dir(ltr) { padding-left: $tabwin_padding / 2; }
+      &:dir(rtl) { padding-right: $tabwin_padding / 2; }
     }
   }
 
@@ -2896,8 +2895,8 @@ window.background:not(.solid-csd) > box.vertical {
   @if $maj_ver == 3 {
     @if $mnr_ver < 23 {
       headerbar.titlebar { // legacy
-        padding: 0 if($ref_weight < 1.0, (28px - $icon_size * 1.25) * 0.5,
-                                         (28px - $icon_size * 1.5) * 0.5);
+        padding: 0 if($ref_weight < 1.0, (28px - $icon_size * 1.25) / 2,
+                                         (28px - $icon_size * 1.5) / 2);
 
         &.default-decoration button.titlebutton {
           @extend %browser_csd_titlebutton;
@@ -3618,7 +3617,7 @@ box#DockBox > paned#DockBoxPane {
   widget#GdlDock paned widget > widget > button.flat {
     min-width: $icon_size;
     min-height: $icon_size;
-    padding: $icon_size * 0.25;
+    padding: $icon_size / 4;
   }
 }
 
@@ -4080,7 +4079,7 @@ button.flat.-panel-icon-button {
          image($sel_bg),
          image(saturate(lighten($sel_bg, percentage($a_trk_2)),
                  percentage($a_trk_2))));
-    background-size: math.div(6px, 1.1) 2px; // 1:1.1 aspect deformation exists
+    background-size: (6px / 1.1) 2px; // 1:1.1 aspect deformation exists
     background-position: bottom center;
   }
 
@@ -4092,7 +4091,7 @@ button.flat.-panel-icon-button {
 
   box.vertical & {
     > image {
-      background-size: 2px math.div(6px, 1.1);
+      background-size: 2px (6px / 1.1);
       background-position: left center;
     }
 

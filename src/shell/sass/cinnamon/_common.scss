@@ -110,8 +110,8 @@ StScrollBar {
   padding: 0;
 
   StScrollView & {
-    min-width: (0.9em + 0.6em) * 0.5; // an average between std & compact
-    min-height: (0.9em + 0.6em) * 0.5;
+    min-width: (0.9em + 0.6em) / 2; // an average between std & compact
+    min-height: (0.9em + 0.6em) / 2;
   }
 
   StBin#trough {
@@ -163,7 +163,7 @@ StScrollBar {
   -slider-active-background-color: $acc_bg; // active trough fill
   -slider-active-border-color: transparent; // active trough border
   -slider-border-width: 0;
-  -slider-handle-radius: $icon_size * 0.5;
+  -slider-handle-radius: $icon_size / 2;
 }
 
 // /***************
@@ -174,7 +174,7 @@ StScrollBar {
   CinnamonGenericContainer {
     min-height: $ref_size * 2;
     spacing: 0.4em;
-    padding-top: ($ref_size * 2 - $icon_size) * 0.5;
+    padding-top: ($ref_size * 2 - $icon_size) / 2;
   }
 
   StLabel {

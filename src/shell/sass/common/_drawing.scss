@@ -39,7 +39,7 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
 
 @mixin entry($t, $tc: $fg, $fc: $sel_bg) {
   @if $t == normal {
-    background-color: opacity($tc, $a_trk_1 * 0.5);
+    background-color: opacity($tc, $a_trk_1 / 2);
     color: opacity($tc, $a_fg_2nd);
     caret-color: opacity($tc, $a_fg_2nd);
     box-shadow: inset 0 -2px opacity($tc, $a_trk_out);
@@ -56,7 +56,7 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
     box-shadow: inset 0 -2px opacity($tc, $a_trk_out);
   }
   @else if $t == disabled {
-    background-color: opacity($tc, $a_trk_1 * 0.5 * $a_fg_dis);
+    background-color: opacity($tc, $a_trk_1 / 2 * $a_fg_dis);
     color: opacity($tc, $a_fg_dis);
     box-shadow: $empty_shadow;
   }
@@ -106,7 +106,7 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
   }
   @else if $t == disabled {
     border-color: mix($tc, $c, percentage($a_div_1 * $a_fg_dis));
-    background-color: mix($tc, $c, percentage($a_trk_1 * 0.5 * $a_fg_dis));
+    background-color: mix($tc, $c, percentage($a_trk_1 / 2 * $a_fg_dis));
     color: opacity($tc, $a_fg_dis);
   }
   @else if $t == flat-normal {
