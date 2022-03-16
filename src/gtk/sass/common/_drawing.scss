@@ -71,9 +71,10 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
     border-radius: #{$r};
   }
   @else {
-    // border-radius: #{$r};
-    // -gtk-outline-radius: #{$r_out};
-    border-radius: #{$r_out};
+    border-radius: #{$r};
+    @if $maj_ver == 3 {
+      -gtk-outline-radius: #{$r_out};
+    }
   }
 }
 

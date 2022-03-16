@@ -1,0 +1,29 @@
+{
+  "name": "plata-theme",
+  "version": "1.0.0",
+  "description": "A Gtk theme based on Material Design Refresh.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"sass": "sass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/GZGavinZhao/plata-theme.git"
+  },
+  "keywords": [
+    "GTK",
+    "Linux",
+    "Material",
+    "Plata"
+  ],
+  "author": "tista500, GZGavinZhao",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://gitlab.com/GZGavinZhao/plata-theme/issues"
+  },
+  "homepage": "https://gitlab.com/GZGavinZhao/plata-theme#readme",
+  "dependencies": {
+    "sass": "^1.49.9"
+  }
+}

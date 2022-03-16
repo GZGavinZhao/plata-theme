@@ -7,7 +7,12 @@
   background-clip: padding-box;
 
   outline-color: $trk_out_fg;
-  border-radius: $r_2;
+  @if $maj_ver == 3 {
+    -gtk-outline-radius: $r_2;
+  }
+  @else {
+    border-radius: $r_2;
+  }
 
   -gtk-secondary-caret-color: $sel_bg;
 
@@ -31,7 +36,7 @@
                   (row, solid, 2px, -2px),
                   (tab, none, 0, 0),
                   (label, solid, 2px, 0), {
-  @if $maj_ver == 3 {
+  @if $maj_ver >= 3 {
     #{$_node} {
       outline-style: #{$_style};
       outline-width: #{$_width};
@@ -4320,9 +4325,11 @@ check {
 }
 
 scale {
-  @if $maj_ver == 4 {
-    &:focus(visible) { outline: none; } // enforce hiding outlines
-  }
+	// Unfortunately focus is an unknown psuedoclass to GTK4
+	// 
+  // @if $maj_ver == 4 {
+  //   &:focus(visible) { outline: none; } // enforce hiding outlines
+  // }
 
   &, &.fine-tune {
     padding: ($scale_slider_size - $scale_trough_size) / 2;
