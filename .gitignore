@@ -3,6 +3,7 @@ assets-gtk2
 assets-gtk3
 assets-gtk2.svg
 assets-gtk3.svg
+build
 gtk-3.20
 gtk-3.20-compact
 gtk-3.20-lumine
@@ -43,6 +44,7 @@ gnome-shell-lumine/assets
 gnome-shell-lumine-compact/assets
 gnome-shell-noir/assets
 gnome-shell-noir-compact/assets
+node_modules/
 workspaces-to-dock/assets
 cinnamon/assets
 cinnamon-lumine/assets
@@ -62,3 +64,4 @@ install-sh
 Makefile
 Makefile.in
 missing
+
