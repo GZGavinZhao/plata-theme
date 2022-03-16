@@ -5,7 +5,7 @@
 %gnome_panel_toplevel {
   background-color: $panel_bg;
 
-  @if $maj_ver == 3 {
+  @if $maj_ver >= 3 {
     * { outline-width: 0; } // unset outlines
   }
   @else {
@@ -670,7 +670,7 @@ $gf_margin: 12px;
       background-color: $sel_bg;
       color: $sel_fg;
     }
-    @if $maj_ver == 3 {
+    @if $maj_ver >= 3 {
       outline-width: 0; // unset outlines
     }
     @else {
@@ -679,7 +679,7 @@ $gf_margin: 12px;
   }
 
   &-list-view treeview.view {
-    @if $maj_ver == 3 {
+    @if $maj_ver >= 3 {
       outline-width: 0; // unset outlines
     }
     @else {
@@ -718,7 +718,7 @@ $gf_margin: 12px;
     margin: unset; // unset spacing first
     padding: unset;
     color: $fg;
-    @if $maj_ver == 3 {
+    @if $maj_ver >= 3 {
       outline-width: 0; // unset outlines
     }
     @else {
