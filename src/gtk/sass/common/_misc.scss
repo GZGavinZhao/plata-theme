@@ -184,7 +184,9 @@ wnck-pager {
   }
 }
 
-na-tray-applet { -NaTrayApplet-icon-padding: 2px; }
+@if $maj_ver < 4 {
+	na-tray-applet { -NaTrayApplet-icon-padding: 2px; }
+}
 
 gp-arrow-button {
   min-width: rem($widget_size / 2);
