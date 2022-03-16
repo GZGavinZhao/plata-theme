@@ -1603,7 +1603,9 @@ layout {
   // revive top-edge border with box-shadow
   box-shadow: inset 0 -1px $div_sld_fg;
 
-  -PnlDockBin-handle-size: 1;
+  @if $maj_ver < 4 {
+  	-PnlDockBin-handle-size: 1;
+  }
 }
 
 eggsearchbar box.search-bar { background-color: $dark_bg; }

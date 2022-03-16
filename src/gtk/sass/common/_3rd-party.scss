@@ -2062,10 +2062,12 @@ window.background.lightdm {
     > stack > box.vertical { opacity: $a_fg_3rd; }
   }
 
-  treeview.places-treeview { // use opaque colors
-    -NemoPlacesTreeView-disk-full-bg-color:
-      mix($fg, $bg, percentage($a_trk_out));
-    -NemoPlacesTreeView-disk-full-fg-color: $acc_bg;
+  @if $maj_ver < 4 {
+  	treeview.places-treeview { // use opaque colors
+  	  -NemoPlacesTreeView-disk-full-bg-color:
+  	    mix($fg, $bg, percentage($a_trk_out));
+  	  -NemoPlacesTreeView-disk-full-fg-color: $acc_bg;
+  	}
   }
 
   // workaround for invisible text in rename entry (Eeleditable.entry)
@@ -2575,9 +2577,11 @@ window#whiskermenu-window {
 $tabwin_padding: if($ref_weight < 1.0, 8px, 12px);
 
 #xfwm-tabwin {
-  -XfwmTabwinWidget-icon-size: $icon_size * 3;
-  -XfwmTabwinWidget-preview-size: $icon_size * 6;
-  -XfwmTabwinWidget-listview-icon-size: $icon_size * 2;
+  @if $maj_ver < 4 {
+	-XfwmTabwinWidget-icon-size: $icon_size * 3;
+  	-XfwmTabwinWidget-preview-size: $icon_size * 6;
+  	-XfwmTabwinWidget-listview-icon-size: $icon_size * 2;
+  }
 
   all: unset;
 
