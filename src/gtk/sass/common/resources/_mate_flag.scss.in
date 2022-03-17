@@ -1,0 +1,2 @@
+// Mate support flag
+$mate_support: @mate_support@;

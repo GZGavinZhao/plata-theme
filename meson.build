@@ -23,22 +23,6 @@ platacompactdir = join_paths(prefix, themedir, 'Plata-Compact')
 luminecompactdir = join_paths(prefix, themedir, 'Plata-Lumine-Compact')
 noircompactdir = join_paths(prefix, themedir, 'Plata-Noir-Compact')
 
-# Set colors
-
-# Default colors
-color_file = './src/gtk/sass/common/_colors.scss'
-selection_default = run_command('grep', 'Indigo500', color_file, check: true).stdout().strip().split()[2]
-accent_default = run_command('grep', 'Indigo300', color_file, check: true).stdout().strip().split()[2]
-suggestion_default = run_command('grep', 'DPurple500', color_file, check: true).stdout().strip().split()[2]
-destruction_default = run_command('grep', 'Red500', color_file, check: true).stdout().strip().split()[2]
-
-key_colors = configuration_data()
-key_colors.set('key_selection_color', get_option('key_selection_color'))
-key_colors.set('key_accent_color', get_option('key_accent_color'))
-key_colors.set('key_suggestion_color', get_option('key_suggestion_color'))
-key_colors.set('key_destruction_color', get_option('key_destruction_color'))
-subdir('src/gtk/sass/common/resources')
-
 # Dependencies
 
 gdk_pixbuf = dependency('gdk-pixbuf-2.0', version: '>=2.32.2')
@@ -74,10 +58,43 @@ if not sassc.found() or sass_is_ruby_sass or not sass_has_module_system
   sassc = find_program('./node_modules/.bin/sass')
 endif
 
+# Set colors
+
+# Default colors
+color_file = './src/gtk/sass/common/_colors.scss'
+selection_default = run_command('grep', 'Indigo500', color_file, check: true).stdout().strip().split()[2]
+accent_default = run_command('grep', 'Indigo300', color_file, check: true).stdout().strip().split()[2]
+suggestion_default = run_command('grep', 'DPurple500', color_file, check: true).stdout().strip().split()[2]
+destruction_default = run_command('grep', 'Red500', color_file, check: true).stdout().strip().split()[2]
+
+# From m4/plata-gnome.m4
+
+# check glib-2.0 version for determining GNOME env version
+gio_version = glib.version()
+gnome_scss_version = '3.24'
+if gio_version.version_compare('>=2.65')
+  # switch to gnome-shell 3.38 theming if GIO >= 2.65
+  gnome_scss_version = '3.38'
+elif gio_version.version_compare('>=2.63')
+  # switch to gnome-shell 3.36 theming if GIO >= 2.63
+  gnome_scss_version = '3.36'
+elif gio_version.version_compare('>=2.61')
+  # switch to gnome-shell 3.34 theming if GIO >= 2.61
+  gnome_scss_version = '3.34'
+elif gio_version.version_compare('>=2.59')
+  # switch to gnome-shell 3.32 theming if GIO >= 2.59
+  gnome_scss_version = '3.32'
+elif gio_version.version_compare('>=2.53')
+  # switch to gnome-shell 3.26 theming if GIO >= 2.53
+  gnome_scss_version = '3.26'
+endif
+
+subdir('src/gtk/sass/common/resources')
+
 report = [
   f'     Plata Theme @plata_version@',
-  f'     =================================================================',
-  f'',
+   '     =================================================================',
+   '',
   f'      prefix:                 @prefix@',
   f'      datarootdir:            @datarootdir@',
   f'      target directories:     @platadir@',
@@ -86,57 +103,57 @@ report = [
   f'                              @luminecompactdir@',
   f'                              @noirdir@',
   f'                              @noircompactdir@',
-  f'',
+   '',
    '      glib-compile-resources: @0@'.format(glib_compile_resources.full_path()),
    '      xmllint:                @0@'.format(xmllint.full_path()),
    '      inkscape:               @0@'.format(inkscape.full_path()),
    '      sassc:                  @0@'.format(sassc.full_path()),
    '',
-   '      parallel-build:         $ENABLE_PARALLEL (default: no)',
-   '      parallel:               $PARALLEL',
-   '',
+  #'      parallel-build:         $ENABLE_PARALLEL (default: no)',
+  #'      parallel:               $PARALLEL',
+  #'',
    '      zip:                    @0@ (required if -Dtelegram=true)'.format(zip.full_path()),
    '      libmarco:               @0@ (required if -Dmate=true)'.format(libmarco.version()),
    '',
-  f'      selection-color:        $SELECTION (default: @selection_default@)',
-  f'      accent-color:           $ACCENT (default: @accent_default@)',
-  f'      suggestion-color:       $SUGGESTION (default: @suggestion_default@)',
-  f'      destruction-color:      $DESTRUCTION (default: @destruction_default@)',
-  f'',
-  f'',
-  f'     -----------------------------------------------------------------',
-  f'     | Supported Gtk Version',
-  f'     -----------------------------------------------------------------',
-  f'',
-  f'      Gtk 2.0:                always',
-  f'      Gtk 3.20:               always',
-  f'      Gtk 3.22:               always',
-  f'      Gtk 3.24:               always',
+   '      selection-color:        @0@ (default: @1@)'.format(get_option('key_selection_color'), selection_default),
+   '      accent-color:           @0@ (default: @1@)'.format(get_option('key_accent_color'), accent_default),
+   '      suggestion-color:       @0@ (default: @1@)'.format(get_option('key_suggestion_color'), suggestion_default),
+   '      destruction-color:      @0@ (default: @1@)'.format(get_option('key_destruction_color'), destruction_default),
+   '',
+   '',
+   '     -----------------------------------------------------------------',
+   '     | Supported Gtk Version',
+   '     -----------------------------------------------------------------',
+   '',
+   '      Gtk 2.0:                always',
+   '      Gtk 3.20:               always',
+   '      Gtk 3.22:               always',
+   '      Gtk 3.24:               always',
    '      Gtk 4.0:                @0@ (experimental)'.format(get_option('gtk_next')),
-  f'',
-  f'     -----------------------------------------------------------------',
-  f'     | DE and WM Support',
-  f'     -----------------------------------------------------------------',
-  f'',
-  '      Budgie-Desktop:         always (>= 10.4)',
-  '      GNOME:                  @0@ (default: true) (SCSS ver. $GNOME_SCSS_VERSION)'.format(get_option('gnome')),
-  '      Cinnamon:               @0@ (default: true)'.format(get_option('cinnamon')),
-  '      GNOME-Flashback:        @0@ (default: true)'.format(get_option('flashback')),
-  '      XFce:                   @0@ (default: true)'.format(get_option('xfce')),
-  '      Mate:                   @0@ (default: true)'.format(get_option('mate')),
-  '      Openbox:                @0@ (default: true)'.format(get_option('openbox')),
-  f'',
-  f'     -----------------------------------------------------------------',
-  f'     | Extra Support',
-  f'     -----------------------------------------------------------------',
-  f'',
-  f'      GtkSourceView/Gedit:    always',
-  f'      Plank:                  @0@ (default: false)'.format(get_option('plank')),
-  f'      Telegram:               @0@ (default: false)'.format(get_option('telegram')),
-  f'      Tweetdeck-Colordeck:    @0@ (default: false)'.format(get_option('tweetdeck')),
-  f'      Air-for-Steam:          @0@ (default: false)'.format(get_option('airforsteam')),
-  f'',
-  f'     =================================================================',
+   '',
+   '     -----------------------------------------------------------------',
+   '     | DE and WM Support',
+   '     -----------------------------------------------------------------',
+   '',
+   '      Budgie-Desktop:         always (>= 10.4)',
+   '      GNOME:                  @0@ (default: true) (SCSS ver. @1@)'.format(get_option('gnome'), gnome_scss_version),
+   '      Cinnamon:               @0@ (default: true)'.format(get_option('cinnamon')),
+   '      GNOME-Flashback:        @0@ (default: true)'.format(get_option('flashback')),
+   '      XFce:                   @0@ (default: true)'.format(get_option('xfce')),
+   '      Mate:                   @0@ (default: true)'.format(get_option('mate')),
+   '      Openbox:                @0@ (default: true)'.format(get_option('openbox')),
+   '',
+   '     -----------------------------------------------------------------',
+   '     | Extra Support',
+   '     -----------------------------------------------------------------',
+   '',
+   '      GtkSourceView/Gedit:    always',
+   '      Plank:                  @0@ (default: false)'.format(get_option('plank')),
+   '      Telegram:               @0@ (default: false)'.format(get_option('telegram')),
+   '      Tweetdeck-Colordeck:    @0@ (default: false)'.format(get_option('tweetdeck')),
+   '      Air-for-Steam:          @0@ (default: false)'.format(get_option('airforsteam')),
+   '',
+   '     =================================================================',
 ]
 
 message('\n\n' + '\n'.join(report) + '\n')
