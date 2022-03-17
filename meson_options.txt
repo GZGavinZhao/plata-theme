@@ -1,4 +1,32 @@
 option(
+  'key_selection_color',
+  type: 'string',
+  value: '#3f51b5',
+  description: 'Selection (Primary) color',
+)
+
+option(
+  'key_accent_color',
+  type: 'string',
+  value: '#7986cb',
+  description: 'Accent (Secondary) color',
+)
+
+option(
+  'key_suggestion_color',
+  type: 'string',
+  value: '#673ab7',
+  description: 'Suggestion (Secondary) color',
+)
+
+option(
+  'key_destruction_color',
+  type: 'string',
+  value: '#f44336',
+  description: 'Destruction (Tertiary) color',
+)
+
+option(
   'gnome',
   type: 'boolean',
   value: 'true',

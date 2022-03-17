@@ -23,13 +23,21 @@ platacompactdir = join_paths(prefix, themedir, 'Plata-Compact')
 luminecompactdir = join_paths(prefix, themedir, 'Plata-Lumine-Compact')
 noircompactdir = join_paths(prefix, themedir, 'Plata-Noir-Compact')
 
-# Default colors
+# Set colors
 
+# Default colors
 color_file = './src/gtk/sass/common/_colors.scss'
 selection_default = run_command('grep', 'Indigo500', color_file, check: true).stdout().strip().split()[2]
 accent_default = run_command('grep', 'Indigo300', color_file, check: true).stdout().strip().split()[2]
 suggestion_default = run_command('grep', 'DPurple500', color_file, check: true).stdout().strip().split()[2]
 destruction_default = run_command('grep', 'Red500', color_file, check: true).stdout().strip().split()[2]
+
+key_colors = configuration_data()
+key_colors.set('key_selection_color', get_option('key_selection_color'))
+key_colors.set('key_accent_color', get_option('key_accent_color'))
+key_colors.set('key_suggestion_color', get_option('key_suggestion_color'))
+key_colors.set('key_destruction_color', get_option('key_destruction_color'))
+subdir('src/gtk/sass/common/resources')
 
 # Dependencies
 
