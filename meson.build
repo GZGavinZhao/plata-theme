@@ -90,6 +90,7 @@ elif gio_version.version_compare('>=2.53')
 endif
 
 subdir('src/gtk/sass/common/resources')
+subdir('data')
 
 report = [
   f'     Plata Theme @plata_version@',
