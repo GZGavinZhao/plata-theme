@@ -1,6 +1,0 @@
-install_data('index.theme', install_dir: platadir)
-install_data('index.theme-light', install_dir: luminedir)
-install_data('index.theme-dark', install_dir: noirdir)
-install_data('index.theme-compact', install_dir: platacompactdir)
-install_data('index.theme-light-compact', install_dir: luminecompactdir)
-install_data('index.theme-dark-compact', install_dir: noircompactdir)
