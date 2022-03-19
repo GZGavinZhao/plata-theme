@@ -37,12 +37,12 @@
 
 @if $maj_ver != xfce {
   @keyframes slow_down_vert {
-    from {min-width: $slider_min_width / 2; }
+    from {min-width: $slider_min_width * 0.5; }
     to { min-width: $slider_min_width; }
   }
 
   @keyframes slow_down_horz {
-    from {min-height: $slider_min_width / 2; }
+    from {min-height: $slider_min_width * 0.5; }
     to { min-height: $slider_min_width; }
   }
 }

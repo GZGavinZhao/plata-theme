@@ -2,6 +2,8 @@
 //  * Common States *
 //  *****************/
 
+@use "sass:math";
+
 * {
   padding: 0;
   background-clip: padding-box;
@@ -721,10 +723,10 @@ entry {
 
     &:dir(ltr) {
       margin-left: rem($entry_lr_space);
-      margin-right: rem(-$entry_lr_space / 2);
+      margin-right: rem(-$entry_lr_space * 0.5);
     }
     &:dir(rtl) {
-      margin-left: rem(-$entry_lr_space / 2);
+      margin-left: rem(-$entry_lr_space * 0.5);
       margin-right: rem($entry_lr_space);
     }
 
@@ -883,10 +885,10 @@ button {
   &.text-button.image-button,
   &.lock {
     @include radius($r_2);
-    padding: 0 rem($txt_button_lr_space / 2);
+    padding: 0 rem($txt_button_lr_space * 0.5);
 
     label,
-    image { padding: 0 rem($txt_button_lr_space / 2); }
+    image { padding: 0 rem($txt_button_lr_space * 0.5); }
   }
 
   headerbar & { // GtkHeaderBar specific
@@ -899,8 +901,8 @@ button {
 
     label.text-button { // workaround for Gnome-Software
       padding: 0;
-      &:dir(ltr) { padding-right: rem($entry_lr_space / 2); }
-      &:dir(rtl) { padding-left: rem($entry_lr_space / 2); }
+      &:dir(ltr) { padding-right: rem($entry_lr_space * 0.5); }
+      &:dir(rtl) { padding-left: rem($entry_lr_space * 0.5); }
     }
 
     &.flat {
@@ -1071,7 +1073,7 @@ button {
     &.image-button { // enforce flat-buttons
       min-height: rem($widget_size);
       min-width: rem($widget_size);
-      padding: rem($txt_button_lr_space / 2);
+      padding: rem($txt_button_lr_space * 0.5);
       &:not(:disabled) {
         background-color: if($variant == light, track($dark_bg, $a_osd),
                                                 track($inv_dark_bg, $a_osd));
@@ -1090,7 +1092,7 @@ button {
     .linked > & { // 'rotate CW/CCW' linked-buttons
       &.image-button {
         &:not(:disabled) {
-          padding: rem($txt_button_lr_space / 2);
+          padding: rem($txt_button_lr_space * 0.5);
           @include radius($r_2);
           background-color: if($variant == light,
                                track($dark_bg, $a_osd),
@@ -1243,16 +1245,16 @@ button {
     // child, a label needs just lateral padding while an icon needs vertical
     // padding added too.
     label {
-      padding: 0 rem($txt_button_lr_space / 2) rem($baseline, $sw: 1.0);
+      padding: 0 rem($txt_button_lr_space * 0.5) rem($baseline, $sw: 1.0);
     }
 
     image {
-      padding: rem($txt_button_lr_space / 4) rem($txt_button_lr_space / 2);
+      padding: rem($txt_button_lr_space * 0.25) rem($txt_button_lr_space * 0.5);
     }
 
     &.text-button {
       // compensate text-button paddings
-      padding: 0 rem($txt_button_lr_space / 2);
+      padding: 0 rem($txt_button_lr_space * 0.5);
     }
 
     &.image-button:not(.text-button) {
@@ -1361,12 +1363,12 @@ button {
 
       label {
         margin-bottom: 0;
-        padding: 0 rem($txt_button_lr_space / 2) rem($baseline, $sw: 1.0);
+        padding: 0 rem($txt_button_lr_space * 0.5) rem($baseline, $sw: 1.0);
       }
 
       widget image,
       box.horizontal > image { // for some special cases
-        padding: 0  rem($txt_button_lr_space / 2);
+        padding: 0  rem($txt_button_lr_space * 0.5);
       }
     }
   }
@@ -1757,7 +1759,7 @@ spinbutton {
     button {
       min-width: $icon_size;
       min-height: calc(#{rem($widget_size)} - 2px * 2);
-      padding: 0 rem($entry_lr_space / 2);
+      padding: 0 rem($entry_lr_space * 0.5);
       @include radius(0);
       @include button(flat-normal);
       &:hover { @include button(flat-hover); }
@@ -1966,7 +1968,7 @@ combobox {
       &:checked { background-color: track($fg, $a_trk_1); }
       &:disabled {
         background-color:
-          mix($fg, $base, percentage(($a_trk_1 * 2 / 3) * $a_fg_dis));
+          mix($fg, $base, percentage(math.div($a_trk_1 * 2, 3) * $a_fg_dis));
       }
     }
   }
@@ -1986,7 +1988,7 @@ combobox {
   @if $variant == mixed {
     @at-root %inv_combobox,
     .osd & {
-      background-color: track($inv_sec_fg, $a_trk_1 / 2);
+      background-color: track($inv_sec_fg, $a_trk_1 * 0.5);
       color: $inv_sec_fg;
       &:hover,
       &:active,
@@ -1995,7 +1997,7 @@ combobox {
         color: $inv_fg;
       }
       &:disabled {
-        background-color: track($dis_inv_fg, $a_trk_1 / 2 * $a_fg_dis);
+        background-color: track($dis_inv_fg, $a_trk_1 * 0.5 * $a_fg_dis);
         color: $dis_inv_fg;
       }
 
@@ -2118,9 +2120,9 @@ combobox {
 //  ************/
 
 %toolitem_size {
-  min-width: rem($toolitem_size / 2, $sw: 1.0);
+  min-width: rem($toolitem_size * 0.5, $sw: 1.0);
   min-height: rem($toolitem_size, $sw: 1.0);
-  padding: 0 rem($toolitem_size / 4, $sw: 1.0);
+  padding: 0 rem($toolitem_size * 0.25, $sw: 1.0);
 }
 
 toolbar {
@@ -3528,7 +3530,7 @@ combobox > window.popup { // combobox specific context-menu popup
 
       accelerator { // = check/radio spacing
         margin: 0 rem($menuitem_padding);
-        padding: 0 ($icon_size / 3);
+        padding: 0 math.div($icon_size, 3);
       }
 
       &:not(.osd) {
@@ -3590,7 +3592,7 @@ combobox > window.popup { // combobox specific context-menu popup
 
   &.top {
     > tabs {
-      margin: rem($menuitem_padding / 2) rem($menuitem_padding) 0;
+      margin: rem($menuitem_padding * 0.5) rem($menuitem_padding) 0;
 
       > tab {
         min-height: $menuitem_height;
@@ -3599,7 +3601,7 @@ combobox > window.popup { // combobox specific context-menu popup
         box-shadow: none;
         &.reorderable-page {
           margin: 0 -1px;
-          padding: rem($menuitem_padding / 2) rem($menuitem_padding * 1.5);
+          padding: rem($menuitem_padding * 0.5) rem($menuitem_padding * 1.5);
           border-left-width: 1px;
           border-right-width: 1px;
         }
@@ -3609,7 +3611,7 @@ combobox > window.popup { // combobox specific context-menu popup
 
   &.bottom {
     > tabs {
-      margin: 0 rem($menuitem_padding) rem($menuitem_padding / 2);
+      margin: 0 rem($menuitem_padding) rem($menuitem_padding * 0.5);
 
       > tab {
         min-height: $menuitem_height;
@@ -3618,7 +3620,7 @@ combobox > window.popup { // combobox specific context-menu popup
         box-shadow: none;
         &.reorderable-page {
           margin: 0 -1px;
-          padding: rem($menuitem_padding / 2) rem($menuitem_padding * 1.5);
+          padding: rem($menuitem_padding * 0.5) rem($menuitem_padding * 1.5);
           border-left-width: 1px;
           border-right-width: 1px;
         }
@@ -3813,8 +3815,8 @@ notebook {
   min-height: calc(#{$icon_size} + 1px + #{rem($menuitem_padding)});
   min-width: calc(#{$icon_size} + 1px + #{rem($menuitem_padding)});
   padding: 0;
-  margin-top: rem($menuitem_padding / 2);
-  margin-bottom: rem($menuitem_padding / 2);
+  margin-top: rem($menuitem_padding * 0.5);
+  margin-bottom: rem($menuitem_padding * 0.5);
 }
 
 // /**************
@@ -3918,8 +3920,8 @@ scrollbar {
 
       // slider and button sizing
       @each $_position,$_min_w,$_min_l,$_button_s in
-      ('vertical', $slider_min_width / 2, $slider_min_length, 'min-width'),
-      ('horizontal', $slider_min_length, $slider_min_width / 2, 'min-height') {
+      ('vertical', $slider_min_width * 0.5, $slider_min_length, 'min-width'),
+      ('horizontal', $slider_min_length, $slider_min_width * 0.5, 'min-height') {
         &.#{$_position} {
           slider {
             min-width: #{$_min_w};
@@ -4253,8 +4255,8 @@ check {
   // FIXME: exclude damned FirefoxQuantum as well
   .background:not(#MozillaGtkWidget) & {
     @include radius($r, none);
-    margin: (-$icon_size / 3) rem($menuitem_padding);
-    padding: ($icon_size / 3);
+    margin: math.div(-$icon_size, 3) rem($menuitem_padding);
+    padding: math.div($icon_size, 3);
     @include ink-reaction(normal, $tr: ink-normal-std);
     &:hover { @include ink-reaction(active-dec, $tr: ink-active-std); }
     &:hover:checked,
@@ -4332,12 +4334,12 @@ scale {
   // }
 
   &, &.fine-tune {
-    padding: ($scale_slider_size - $scale_trough_size) / 2;
+    padding: ($scale_slider_size - $scale_trough_size) * 0.5;
 
     &.marks {
       &-before,
       &-after { // vertically centered placements
-        &.horizontal { margin-top: $scale_trough_size / 2; }
+        &.horizontal { margin-top: $scale_trough_size * 0.5; }
       }
     }
   }
@@ -4386,7 +4388,7 @@ scale {
   &.fine-tune slider {
     min-height: $scale_slider_size;
     min-width: $scale_slider_size;
-    margin: -(($scale_slider_size - $scale_trough_size) / 2);
+    margin: -(($scale_slider_size - $scale_trough_size) * 0.5);
   }
 
   // the backing bit sizing
@@ -4565,8 +4567,8 @@ scale { // marks color
   }
 }
 
-$thick_side: $scale_slider_size * 3 / 4;
-$thin_side: $scale_slider_size / 2;
+$thick_side: $scale_slider_size * 3 * 0.25;
+$thin_side: $scale_slider_size * 0.5;
 
 scale { // scales for color
   &.color,
@@ -4753,7 +4755,7 @@ levelbar {
       @else { min-height: $progress_size; }
     }
 
-    trough { padding: ($progress_size / 2) 1px; }
+    trough { padding: ($progress_size * 0.5) 1px; }
 
     &.discrete block { margin: 0 1px; }
   }
@@ -4766,7 +4768,7 @@ levelbar {
       @else { min-width: $progress_size; }
     }
 
-    trough { padding: 1px ($progress_size / 2); }
+    trough { padding: 1px ($progress_size * 0.5); }
 
     &.discrete block { margin: 1px 0; }
   }
@@ -4932,7 +4934,7 @@ row {
   button.small-button {
     min-width: calc(#{rem($small_widget)} - 1px * 2);
     min-height: calc(#{rem($small_widget)} - 1px * 2);
-    margin: rem($widget_size - $small_widget) / 2 0;
+    margin: rem($widget_size - $small_widget) * 0.5 0;
     padding: 0;
     @include radius($r);
     &.flat {
@@ -5786,7 +5788,7 @@ colorswatch {
 // colorchooser spacing
 colorchooser overlay > grid {
   // FIXME: above 'editor-color-sample' needs extra
-  @if rem($widget_size) < (32px / $ref_size * 1rem) {
+  @if rem($widget_size) < (math.div(32px, $ref_size) * 1rem) {
     padding-top: calc((32px - #{rem($widget_size)}) / 2);
   }
 }
@@ -6221,7 +6223,7 @@ headerbar.titlebar.default-decoration {
 cursor-handle {
   min-width: $handle_width;
   min-height: $handle_height;
-  padding: 0 ($handle_width / 2);
+  padding: 0 ($handle_width * 0.5);
   border: none;
   background: none;
   box-shadow: none;
@@ -6279,11 +6281,11 @@ cursor-handle {
 }
 
 .keycap {
-  min-width: rem($widget_size / 2, $sw: 1.0);
-  min-height: rem($widget_size / 2, $sw: 1.0);
-  padding: rem((($widget_size / 2) - ($ref_size + $baseline)) / 2, $sw: 1.0)
-           rem((($widget_size / 2) - $ref_size) / 2, $sw: 1.0)
-           rem((($widget_size / 2) - ($ref_size - $baseline)) / 2, $sw: 1.0);
+  min-width: rem($widget_size * 0.5, $sw: 1.0);
+  min-height: rem($widget_size * 0.5, $sw: 1.0);
+  padding: rem((($widget_size * 0.5) - ($ref_size + $baseline)) * 0.5, $sw: 1.0)
+           rem((($widget_size * 0.5) - $ref_size) * 0.5, $sw: 1.0)
+           rem((($widget_size * 0.5) - ($ref_size - $baseline)) * 0.5, $sw: 1.0);
   border: none;
   @include radius($r_2, none);
   @if $variant == mixed {
