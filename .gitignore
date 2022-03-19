@@ -4,6 +4,10 @@ assets-gtk3
 assets-gtk2.svg
 assets-gtk3.svg
 build
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
 gtk-3.20
 gtk-3.20-compact
 gtk-3.20-lumine

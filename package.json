@@ -4,8 +4,7 @@
   "description": "A Gtk theme based on Material Design Refresh.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-	"sass": "sass"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,7 +22,8 @@
     "url": "https://gitlab.com/GZGavinZhao/plata-theme/issues"
   },
   "homepage": "https://gitlab.com/GZGavinZhao/plata-theme#readme",
-  "dependencies": {
-    "sass": "^1.49.9"
+  "devDependencies": {
+    "sass": "^1.49.9",
+    "prettier": "2.6.0"
   }
 }
