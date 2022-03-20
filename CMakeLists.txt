@@ -5,10 +5,34 @@ include(GNUInstallDirs)
 
 set(THEME_DIR "${CMAKE_INSTALL_DATADIR}/themes")
 
-# set(GTK_VERSIONS 2.0 3.20 3.22 3.24 4.0)
-set(GTK_VERSIONS 3.20 3.22)
+set(GTK_VERSIONS 3.20 3.22 3.24 4.0)
+# set(GTK_VERSIONS 3.20 3.22)
 set(PLATA_VARIANTS Plata Plata-Compact Plata-Lumine Plata-Lumine-Compact Plata-Noir Plata-Noir-Compact)
 set(PLATA_SCSS_FILES gtk-mixed.scss gtk-mixed-compact.scss gtk-light.scss gtk-light-compact.scss gtk-dark.scss gtk-dark-compact.scss)
 set(PLATA_CSS_FILES gtk-mixed.css gtk-mixed-compact.css gtk-light.css gtk-light-compact.css gtk-dark.css gtk-dark-compact.css)
+
+set(SASSC-NOTFOUND FALSE)
+find_program(
+	SASSC # Even though we're using Dart Sass, the name is still SASSC for legacy reasons.
+	NAMES dart-sass sass
+)
+if (NOT SASSC STREQUAL "SASSC-NOTFOUND")
+	execute_process(
+		COMMAND ${SASSC} --version
+		OUTPUT_VARIABLE SASSC_VERSION
+	)
+	message("Sass version: ${SASSC_VERSION}")
+
+	if(${SASSC_VERSION} MATCHES "Ruby")
+		set(SASSC "SASSC-NOTFOUND")
+	endif()
+endif()
+
+if(SASSC STREQUAL "SASSC-NOTFOUND")
+	execute_process(COMMAND npm install)
+	set(SASSC "${CMAKE_CURRENT_SOURCE_DIR}/.bin/sass")
+endif()
+
+set(SASSC_OPTIONS "--no-source-map" "--update")
 
 subdirs("src/gtk/sass")
