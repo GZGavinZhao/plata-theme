@@ -52,8 +52,6 @@ if (NOT SASSC STREQUAL "SASSC-NOTFOUND")
 		COMMAND ${SASSC} --version
 		OUTPUT_VARIABLE SASSC_VERSION
 	)
-	message("Sass version: ${SASSC_VERSION}")
-
 	if(${SASSC_VERSION} MATCHES "Ruby")
 		set(SASSC "SASSC-NOTFOUND")
 	endif()
@@ -65,4 +63,4 @@ endif()
 
 set(SASSC_OPTIONS "--no-source-map" "--update")
 
-subdirs("src/gtk/sass")
+subdirs("src/gtk")
