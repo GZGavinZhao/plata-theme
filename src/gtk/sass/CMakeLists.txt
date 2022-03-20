@@ -1,3 +1,5 @@
+subdirs(common/resources)
+
 foreach(GTK_VER ${GTK_VERSIONS})
 	set(GTK_DIR "gtk-${GTK_VER}")
 
@@ -9,7 +11,7 @@ foreach(GTK_VER ${GTK_VERSIONS})
 		)
 
 		add_custom_target(
-			"${GTK_VER}-light/dark.scss"
+			"${GTK_VER}-gtk-light-and-dark.scss"
 			ALL
 			DEPENDS "${GTK_VER}/gtk-light.css" "${GTK_VER}/gtk-dark.css"
 		)
