@@ -32,8 +32,9 @@ if(TELEGRAM)
 	find_program(ZIP zip REQUIRED)
 endif()
 
-if(MATE)
-	pkg_check_modules(MARCO REQUIRED libmarco-private>=1.22.2)
+pkg_check_modules(MARCO libmarco-private>=1.22.2)
+if(NOT MARCO_FOUND)
+	set(MATE OFF)
 endif()
 
 set(THEME_DIR "${CMAKE_INSTALL_DATADIR}/themes")
