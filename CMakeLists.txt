@@ -63,4 +63,14 @@ endif()
 
 set(SASSC_OPTIONS "--no-source-map" "--update")
 
-subdirs("src/gtk")
+subdirs(data)
+subdirs(src/gtk)
+
+# Install license
+
+foreach(PLATA_VARIANT ${PLATA_VARIANTS})
+	install(
+		FILES COPYING LICENSE_CC_BY_SA4
+		DESTINATION "${THEME_DIR}/${PLATA_VARIANT}"
+	)
+endforeach()
