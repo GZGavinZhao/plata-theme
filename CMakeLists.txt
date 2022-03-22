@@ -47,6 +47,7 @@ set(PLATA_CSS_FILES gtk-mixed.css gtk-mixed-compact.css gtk-light.css gtk-light-
 find_program(
 	SASSC # Even though we're using Dart Sass, the name is still SASSC for legacy reasons.
 	NAMES dart-sass sass
+	PATHS "$ENV{HOME}/.pub-cache/bin"
 )
 if (NOT SASSC STREQUAL "SASSC-NOTFOUND")
 	execute_process(
@@ -59,6 +60,7 @@ if (NOT SASSC STREQUAL "SASSC-NOTFOUND")
 endif()
 if(SASSC STREQUAL "SASSC-NOTFOUND")
 	execute_process(COMMAND npm install)
+	message("Installing Dart Sass from npm...")
 	set(SASSC "${CMAKE_CURRENT_SOURCE_DIR}/.bin/sass")
 endif()
 
