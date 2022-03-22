@@ -1,5 +1,14 @@
 subdirs(common/resources)
 
+set(COMMON_DIR common)
+set(RESOURCE_DIR "${COMMON_DIR}/resources")
+set(ANIMATIONS "${RESOURCE_DIR}/_animations.scss")
+set(COLOR_PALETTE "${RESOURCE_DIR}/_color_palette.scss")
+set(FUNCTIONS "${RESOURCE_DIR}/_functions.scss")
+set(KEY_COLORS "${RESOURCE_DIR}/_key_colors.scss")
+set(MATE_FLAG "${RESOURCE_DIR}/_mate_flag.scss")
+set(VARIABLES "${RESOURCE_DIR}/_variables.scss")
+
 foreach(GTK_VER ${GTK_VERSIONS})
 	set(GTK_DIR "gtk-${GTK_VER}")
 
@@ -7,7 +16,7 @@ foreach(GTK_VER ${GTK_VERSIONS})
 		add_custom_command(
 			OUTPUT "${GTK_VER}/gtk-light.css" "${GTK_VER}/gtk-dark.css"
 			COMMAND ${SASSC} ${SASSC_OPTIONS} ${GTK_VER}
-			DEPENDS "${GTK_VER}/gtk-light.scss" "${GTK_VER}/gtk-dark.scss"
+			DEPENDS "${GTK_VER}/gtk-light.scss" "${GTK_VER}/gtk-dark.scss" "${COMMON_DIR}/**"
 		)
 
 		add_custom_target(
@@ -25,7 +34,7 @@ foreach(GTK_VER ${GTK_VERSIONS})
 			add_custom_command(
 				OUTPUT "${GTK_VER}/${CSS_FILE}"
 				COMMAND "${SASSC}" ${SASSC_OPTIONS} "${GTK_VER}/${SCSS_FILE}:${GTK_VER}/${CSS_FILE}"
-				DEPENDS "${GTK_VER}/${SCSS_FILE}"
+				DEPENDS "${GTK_VER}/${SCSS_FILE}" "${COMMON_DIR}/**"
 			)
 
 			add_custom_target(
