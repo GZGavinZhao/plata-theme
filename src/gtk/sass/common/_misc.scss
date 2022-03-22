@@ -2393,7 +2393,7 @@ frame#weather-page-content-view { // condition-specific
   (clear-night,
     $inv_acc_fg, $sel_fg, $sel_fg, $a_fg_2nd, $a_trk_1, 100%) {
 
-    &.weather-#{$_condition} {
+    &.weather-#{"" + $-condition} {
       button.radio.text-button,
       button.osd {
         @include button(flat-normal,
