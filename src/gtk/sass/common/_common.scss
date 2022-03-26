@@ -88,8 +88,8 @@
 }
 
 *:disabled {
-  @if $maj_ver == 4 { -gtk-icon-filter: opacity($a_fg_3rd); }
-  @else { -gtk-icon-filter: opacity(0.5); }
+  @if $maj_ver >= 4 { -gtk-icon-filter: opacity($a_fg_3rd); }
+  @else { -gtk-icon-effect: dim; }
 }
 
 // for backdrop, tone down element surfaces with transparentize
@@ -5816,9 +5816,11 @@ colorchooser .popover.osd {
 // content view (grid/list)
 .content-view {
   background-color: $bg;
-  @if $maj_ver == 4 {
+  @if $maj_ver >= 4 {
     &:hover { -gtk-icon-filter: brightness(1.2); }
-  }
+	} @else {
+    &:hover { -gtk-icon-effect: highlight; }
+	}
 }
 
 // Decouple the font of context menus from their entry/textview

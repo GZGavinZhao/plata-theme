@@ -554,8 +554,8 @@ $gf_margin: 12px;
   &:hover,
   &:selected {
     image {
-      @if $maj_ver == 3 { -gtk-icon-filter: brightness(1.2); }
-      @else { -gtk-icon-filter: brightness(1.2); }
+      @if $maj_ver >= 4 { -gtk-icon-filter: brightness(1.2); }
+      @else { -gtk-icon-effect: highlight; }
     }
   }
 
@@ -761,8 +761,8 @@ $gf_margin: 12px;
         // tone up image node
         &-background image,
         &-item-background image {
-          @if $maj_ver == 3 { -gtk-icon-filter: brightness(1.2); }
-          @else { -gtk-icon-filter: brightness(1.2); }
+          @if $maj_ver >= 4 { -gtk-icon-filter: brightness(1.2); }
+          @else { -gtk-icon-effect: highlight; }
         }
       }
     }
