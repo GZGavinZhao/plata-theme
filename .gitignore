@@ -69,3 +69,11 @@ Makefile
 Makefile.in
 missing
 
+# Build artifacts
+Plata
+Plata-Compact
+Plata-Lumine
+Plata-Lumine-Compact
+Plata-Noir
+Plata-Noir-Compact
+bruh
