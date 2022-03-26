@@ -1,5 +1,27 @@
 <img src=".gitlab/logo_thumb_small.png" alt="Logo" align="left" width="85" height="85"/>
 
+> Please be aware that I'm migrating this project from Automake to CMake, so
+> dependencies and options may change.
+> 
+> The most notable difference is that we're using Dart Sass instead of
+> `libsass`. View [here](https://sass-lang.com/install) for info on how to get
+> it. If you don't want to install it globally, I tried to use `npm` to install
+> a local version without modifying your path if CMake can't find Dart Sass. If
+> that doesn't work, open an issue.
+>
+> Lastly, for now CMake only covers Gtk 3-4, not even Gnome Shell. To build a
+> copy equivalent to Solus', use the following:
+> ```
+> cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DSELECTION_COLOR=#5294e2 -DACCENT_COLOR=#84beea -DSUGGESTION_COLOR=#4fa2e1 -DDESTRUCTION_COLOR=#f05f7e
+> cmake --build build
+> sudo make -C build install
+> ```
+>
+> Feel free to report any problem you encountered during this process. I
+> recommend you to keep the distribution-proviede `plata-theme` installed, so
+> that at least your system would have a fall-back option in case something is
+> missing.
+
 ### Plata-theme
 
 A Gtk theme based on Material Design Refresh.
