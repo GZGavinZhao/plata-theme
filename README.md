@@ -1,5 +1,3 @@
-<img src=".gitlab/logo_thumb_small.png" alt="Logo" align="left" width="85" height="85"/>
-
 > Please be aware that I'm migrating this project from Automake to CMake, so
 > dependencies and options may change.
 > 
@@ -18,9 +16,11 @@
 > ```
 >
 > Feel free to report any problem you encountered during this process. I
-> recommend you to keep the distribution-proviede `plata-theme` installed, so
+> recommend you to keep the distribution-provided `plata-theme` installed, so
 > that at least your system would have a fall-back option in case something is
 > missing.
+
+<img src=".gitlab/logo_thumb_small.png" alt="Logo" align="left" width="85" height="85"/>
 
 ### Plata-theme
 
