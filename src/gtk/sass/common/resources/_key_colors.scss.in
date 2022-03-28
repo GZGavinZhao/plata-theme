@@ -1,11 +1,11 @@
 // Selection (Primary) color
-$key_selection_color: @KEY_SELECTION_COLOR@;
+$key_selection_color: @SELECTION_COLOR@;
 
 // Accent (Secondary) color
-$key_accent_color: @KEY_ACCENT_COLOR@;
+$key_accent_color: @ACCENT_COLOR@;
 
 // Suggestion (Secondary) color
-$key_suggestion_color: @KEY_SUGGESTION_COLOR@;
+$key_suggestion_color: @SUGGESTION_COLOR@;
 
 // Destruction (Tertiary) color
-$key_destruction_color: @KEY_DESTRUCTION_COLOR@;
+$key_destruction_color: @DESTRUCTION_COLOR@;

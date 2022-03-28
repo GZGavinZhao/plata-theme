@@ -14,11 +14,12 @@ option(PLANK "Enable Plank support" OFF)
 option(TELEGRAM "Enable telegram support" OFF)
 option(TWEETDECK "Enable Tweetdeck-Colordeck" OFF)
 option(AIRFORSTEAM "Enable Air-for-Steam" OFF)
+option(SASS_ONLY "Only compile stylesheets. For development uses only." OFF)
 
-set(KEY_SELECTION_COLOR "#3f51b5" CACHE STRING "Selection (Primary) color")
-set(KEY_ACCENT_COLOR "#7986cb" CACHE STRING "Accent (Secondary) color")
-set(KEY_SUGGESTION_COLOR "#673ab7" CACHE STRING "Suggestion (Secondary) color")
-set(KEY_DESTRUCTION_COLOR "#f44336" CACHE STRING "Destruction (Tertiary) color")
+set(SELECTION_COLOR "#3f51b5" CACHE STRING "Selection (Primary) color")
+set(ACCENT_COLOR "#7986cb" CACHE STRING "Accent (Secondary) color")
+set(SUGGESTION_COLOR "#673ab7" CACHE STRING "Suggestion (Secondary) color")
+set(DESTRUCTION_COLOR "#f44336" CACHE STRING "Destruction (Tertiary) color")
 
 find_package(PkgConfig)
 
