@@ -1,3 +1,5 @@
+/bazel-*
+
 *.css
 assets-gtk2
 assets-gtk3
