@@ -1,2 +1,3 @@
 subdirs(asset)
-subdirs(sass)
+# subdirs(sass)
+subdirs(sass/common/resources)

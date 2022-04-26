@@ -1,19 +1,31 @@
 package(default_visibility = ["//visibility:public"])
 
-# load("@io_bazel_rules_sass//:defs.bzl", "sass_library", "sass_binary")
-# 
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary", "sass_library")
+
+sass_binary(
+    name = "4.0_mixed",
+    src = "4.0/gtk-mixed.scss",
+    include_paths = [
+        "common",
+    ],
+    deps = [
+        "//src/gtk/sass/common",
+    ],
+)
+
+#
 # # make a :colors target that any sass_binary rules can depend on.
 # sass_library(
 #     name = "colors",
 #     srcs = ["common/_colors.scss"],
 # )
-# 
+#
 # # make a :fonts target that any sass_binary rules can depend on.
 # sass_library(
 #     name = "common",
 #     srcs = ["common/_common.scss"],
 # )
-# 
+#
 # # make a :shared target that includes both :colors and :fonts.
 # sass_library(
 #     name = "shared",
@@ -22,7 +34,7 @@ package(default_visibility = ["//visibility:public"])
 #         ":common",
 #     ],
 # )
-# 
+#
 # sass_binary(
 # 	name = "4.0/mixed",
 # 	src = "4.0/gtk-mixed.scss",
