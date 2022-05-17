@@ -63,3 +63,15 @@ http_archive(
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
 bazel_skylib_workspace()
+
+# Aspect Bazel library, mainly for `expand_template`
+http_archive(
+    name = "aspect_bazel_lib",
+    sha256 = "82e80cd47a5c2127ca0d717b7270fa833996c24dce389999c9d67e6c3eeb92e3",
+    strip_prefix = "bazel-lib-0.11.10",
+    url = "https://github.com/aspect-build/bazel-lib/archive/refs/tags/v0.11.10.tar.gz",
+)
+
+load("@aspect_bazel_lib//lib:repositories.bzl", "aspect_bazel_lib_dependencies")
+
+aspect_bazel_lib_dependencies()
