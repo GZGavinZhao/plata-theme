@@ -64,7 +64,7 @@ load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
 bazel_skylib_workspace()
 
-# Aspect Bazel library, mainly for `expand_template`
+# Aspect Bazel library
 http_archive(
     name = "aspect_bazel_lib",
     sha256 = "82e80cd47a5c2127ca0d717b7270fa833996c24dce389999c9d67e6c3eeb92e3",

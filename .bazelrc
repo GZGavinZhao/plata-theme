@@ -2,3 +2,4 @@ build --define=SELECTION_COLOR="#3f51b5"
 build --define=ACCENT_COLOR="#7986cb"
 build --define=SUGGESTION_COLOR="#673ab7"
 build --define=DESTRUCTION_COLOR="#f44336"
+build --define=MATE=true
